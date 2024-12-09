@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teachable Machine Model</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image"></script>
+</head>
+<body>
+    <h1>My Model</h1>
+    <video id="webcam" autoplay></video>
+    <script>
+        const URL = "path_to_your_model";
+        let model, webcam;
+
+        async function init() {
+            model = await tmImage.load(URL + "model.json", URL + "metadata.json");
+            webcam = new tmImage.Webcam(200, 200, true);
+            await webcam.setup();
+            await webcam.play();
+            document.body.appendChild(webcam.canvas);
+        }
+        init();
+    </script>
+</body>
+</html>
